@@ -10,8 +10,6 @@ class matrix(object):
             if (i not in weights):
                 weights.append(i)
         weights.sort()  # sorts the list
-        for i in range(len(weights)):
-            print('weights', i + 1)
         count = 0  # Set a count variable that will be incremented for each cell that are not diagonal
         numbering = 0
         self.row = (np.array([0] * self.size))  # Create an array of 0 values with the array size
@@ -26,12 +24,13 @@ class matrix(object):
                     self.slots[row_position][col_position] = 0
                 else:
                     numbering += 1
-                    print('{0} : For indices {1} ->'.format(numbering, self.map))
+                    print(f'{numbering} : For indices {self.map} ->')
                     self.slots[row_position][col_position] = pattern[count]
                     w = weights.index(pattern[count]) + 1
                     count += 1
-                    print('Pattern is : {0}.'.format(self.slots[row_position][col_position]), end='')
+                    print(f'Pattern is: {self.slots[row_position][col_position]}', end='|')
                     print('Weight is : {0}.'.format(w))
+                    print("_" * 30)
         print('----------------Matrix Table-----------')
         print('Note Row 0 and column 0 are not used')
         print(self.slots)
@@ -48,7 +47,7 @@ class matrix(object):
         print('--------------Corresponding Patterns ----------------')
         c = 1
         for i in self.lis_patt:  # prints weights(indexes) of all patterns resides in the slots
-            print('{0} -> {1}'.format(c, i))
+            print(f'{c} -> {i}')
             c += 1
         print('Note each row in the patterns list hold values from row and column based on relationship')
         self.lis = []  # creates list to get pattern matrix with respect to weights
@@ -63,7 +62,7 @@ class matrix(object):
         print('--------------Weights from the Corresponding patterns----------------')
         c = 1
         for i in self.lis:  # prints weights(indexes) of all patterns resides in the slots
-            print('{0} -> {1}'.format(c, i))
+            print(f'{c} -> {i}')
             c += 1
         print('Note each row in the weights list hold values from row and column based on relationship')
         self.sumlis = []  # creates list to get sum for all weights
@@ -72,13 +71,13 @@ class matrix(object):
             for k in i:
                 s += k
             self.sumlis.append(s)
-        print('---------------Sum of Weights for {0} functions---------------- '.format(self.size - 1))
+        print('---------------Sum of Weights for {0} functions---------------- '.format(self.size - 1)) #str.format()
         c = 1
         for i in self.sumlis:  # calculates total sum
             print('{0} -> {1}'.format(c, i))
             c += 1
         self.totalsum = sum(self.sumlis)
-        print('-----------Total sum of weights for {0} functions = : {1}'.format((self.size - 1), self.totalsum))
+        print(f'-----------Total sum of weights for {self.size - 1} functions = : {self.totalsum}')#string interpolation format
         print('Main Sum List :', self.sumlis)
         print('\n\nGraph\n')
         a = []

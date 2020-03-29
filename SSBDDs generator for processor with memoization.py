@@ -1,7 +1,5 @@
 import numpy as np
 import time
-
-
 class matrix(object):
     def __init__(self, size, pattern):
         start_time = time.time()
