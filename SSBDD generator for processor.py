@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 import time
 class matrix(object):
@@ -11,7 +12,7 @@ class matrix(object):
                 weights.append(i)
         weights.sort()  # sorts the list
         count = 0  # Set a count variable that will be incremented for each cell that are not diagonal
-        numbering = 0
+        self.numbering = 0
         self.row = (np.array([0] * self.size))  # Create an array of 0 values with the array size
         self.col = (np.array([0] * self.size))
         row = (len(self.row))
@@ -23,8 +24,8 @@ class matrix(object):
                 if row_position == col_position:
                     self.slots[row_position][col_position] = 0
                 else:
-                    numbering += 1
-                    print(f'{numbering} : For indices {self.map} ->')
+                    self.numbering += 1
+                    print(f'{self.numbering} : For indices {self.map} ->')
                     self.slots[row_position][col_position] = pattern[count]
                     w = weights.index(pattern[count]) + 1
                     count += 1
@@ -112,6 +113,15 @@ class matrix(object):
         if (len(sechalf) >= 2):  # runs of second half
             self.graph(sechalf)
 
+#prompt user for number of instruction and Patterns
+print("To generate the SSBDDs please provide the followings")
+print("- -"*20)
+total_num_inst = int(input("Enter number of instructions use:"))
+patt = list(map(int, input("\nEnter the patterns : ").strip().split()))
+a = matrix(total_num_inst,patt)
+
+"""
+0 3 3 7 7 8 11 11 11 12 13 15
 a = matrix(20,
            [0, 3, 3, 7, 7, 8, 11, 11, 11, 12, 13, 15, 17, 17, 17, 17, 17, 17, 17, 0, 3, 3, 7, 7, 8, 11, 11, 11, 12, 13,
             15, 17, 17, 17, 17, 17, 17, 17, 3, 3, 3, 5, 5, 7, 9, 9, 9, 10, 10, 11, 12, 12, 12, 12, 12, 12, 12, 3, 3, 3,
@@ -126,4 +136,4 @@ a = matrix(20,
             4, 5, 5, 5, 6, 6, 7, 8, 8, 8, 8, 8, 8, 3, 3, 5, 5, 5, 6, 6, 7, 7, 7, 9, 10, 12, 13, 13, 13, 13, 13, 13, 3,
             3, 5, 5, 5, 6, 6, 7, 7, 7, 9, 10, 12, 13, 13, 13, 13, 13, 13, 3, 3, 5, 5, 5, 6, 6, 7, 7, 7, 8, 8, 11, 12,
             12, 12, 12, 12, 12])
-
+"""
